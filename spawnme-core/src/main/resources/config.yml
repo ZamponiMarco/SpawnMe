@@ -1,0 +1,18 @@
+# This field specifies which spawn will be used (if configured)
+# when a player joins the server (not the first time), if set 
+# to 'none' the  default world spawn will be used
+joinSpawn: none
+
+# This field specifies which spawn will be used (if configured)
+# when a player joins the server for the first time ever, if
+# set to 'none' the default world spawn will be used
+firstJoinSpawn: none
+
+# This field specifies which spawn will be used (if configured)
+# when a player respawns after death, if set to 'none' the
+# default world spawn will be used
+deathSpawn: none
+
+# CONFIG.YML VERSION
+# DO NOT TOUCH
+version: 1.0

@@ -2,6 +2,7 @@ package com.github.jummes.spawnme.gui;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.bukkit.Bukkit;
@@ -37,7 +38,9 @@ public class SpawnsViewInventoryHolder extends PluginInventoryHolder {
 	@Override
 	protected void initializeInventory() {
 		SpawnMenu menu = SpawnMe.getInstance().getSpawnMenuManager().getMenu();
-		List<SpawnItem> spawns = menu.getSpawns();
+		List<SpawnItem> spawns = menu.getSpawns().stream()
+				.filter(spawn -> player.hasPermission("spawnme.spawn." + spawn.getSpawnId()))
+				.collect(Collectors.toList());
 		int spawnsCount = spawns.size();
 		int invSize;
 

@@ -3,7 +3,7 @@
   <parent>
     <artifactId>spawnme</artifactId>
     <groupId>com.github.jummes</groupId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>spawnme-dist</artifactId>
@@ -34,10 +34,6 @@
                 <relocation>
                   <pattern>com.github.jummes.libs</pattern>
                   <shadedPattern>${groupId}.${project.parent.artifactId}.libs</shadedPattern>
-                </relocation>
-                <relocation>
-                  <pattern>org.bstats.bukkit</pattern>
-                  <shadedPattern>${groupId}.${project.parent.artifactId}.core</shadedPattern>
                 </relocation>
               </relocations>
             </configuration>

@@ -2,6 +2,7 @@ name: SpawnMe
 author: jummes
 main: com.github.jummes.spawnme.core.SpawnMe
 version: ${version}
+softdepend: [Multiverse-Core, MultiWorld]
 api-version: 1.13
 commands:
   setspawn:

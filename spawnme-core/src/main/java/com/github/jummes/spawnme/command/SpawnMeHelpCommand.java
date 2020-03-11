@@ -16,7 +16,7 @@ public class SpawnMeHelpCommand extends AbstractCommand {
 							+ "&2/spawn [id] &7Teleport to the spawn [id], if no [id] is provided 'default' is used as id.\n"
 							+ "&2/setspawn [id] &7Set the spawn [id] to the player location, if no [id] is provided 'default' is used as id.\n"+
 							"&2/spawns &7Open the spawns menu.\n")
-			+ MessageUtils.delimiter();
+			+ MessageUtils.delimiter("SpawnMe Help");
 
 	public SpawnMeHelpCommand(CommandSender sender, String subCommand, String[] arguments, boolean isSenderPlayer) {
 		super(sender, subCommand, arguments, isSenderPlayer);

@@ -13,6 +13,9 @@ firstJoinSpawn: none
 # default world spawn will be used
 deathSpawn: none
 
+# Whether the update checker is active or not
+updateChecker: true
+
 # CONFIG.YML VERSION
 # DO NOT TOUCH
-version: 1.0
+version: 1.0.4

@@ -23,9 +23,14 @@ import com.github.jummes.spawnme.spawn.Spawn;
 import com.google.common.collect.Lists;
 
 import lombok.Getter;
+import org.bukkit.util.FileUtil;
+
+import java.io.File;
 
 @Getter
 public class SpawnMe extends JavaPlugin {
+
+    private static final String CONFIG_VERSION = "1.0.4";
 
     @Getter
     private static SpawnMe instance;
@@ -42,16 +47,39 @@ public class SpawnMe extends JavaPlugin {
 
     public void onEnable() {
         instance = this;
-
-        PluginLocale locale = new PluginLocale(this, Lists.newArrayList("en-US"), "en-US");
-
-        Libs.initializeLibrary(this, locale);
-
-        spawnManager = new SpawnManager(Spawn.class, "yaml", this);
-        spawnMenuManager = new SpawnMenuManager(SpawnMenu.class, "yaml", this);
-
+        setUpFolder();
+        setUpData();
         registerListeners();
         setUpExecutors();
+        powerUpServices();
+    }
+
+    private void setUpFolder() {
+        if (!getDataFolder().exists()) {
+            getDataFolder().mkdir();
+        }
+
+        File configFile = new File(getDataFolder(), "config.yml");
+
+        if (!configFile.exists()) {
+            saveDefaultConfig();
+        }
+
+        if (!getConfig().getString("version").equals(CONFIG_VERSION)) {
+            getLogger().info("config.yml has changed. Old config is stored inside config-"
+                    + getConfig().getString("version") + ".yml");
+            File outputFile = new File(getDataFolder(), "config-" + getConfig().getString("version") + ".yml");
+            FileUtil.copy(configFile, outputFile);
+            configFile.delete();
+            saveDefaultConfig();
+        }
+    }
+
+    private void setUpData(){
+        PluginLocale locale = new PluginLocale(this, Lists.newArrayList("en-US"), "en-US");
+        Libs.initializeLibrary(this, locale);
+        spawnManager = new SpawnManager(Spawn.class, "yaml", this);
+        spawnMenuManager = new SpawnMenuManager(SpawnMenu.class, "yaml", this);
     }
 
     private void registerListeners() {
@@ -71,6 +99,12 @@ public class SpawnMe extends JavaPlugin {
         getCommand("spawn").setExecutor(spawnExecutor);
         getCommand("spawns").setExecutor(spawnsExecutor);
         getCommand("setspawn").setExecutor(setSpawnExecutor);
+    }
+
+    private void powerUpServices() {
+        if (Boolean.parseBoolean(getConfig().getString("updateChecker"))) {
+            new UpdateChecker().checkForUpdate();
+        }
     }
 
 }

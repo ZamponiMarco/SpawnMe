@@ -6,6 +6,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.bukkit.Material;
+import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 
 import com.github.jummes.libs.annotation.Serializable;
@@ -29,7 +30,7 @@ public class SpawnItem implements Model {
 
     @Serializable(headTexture = TARGET_HEAD, fromList = "getSpawns", fromListMapper = "mapSpawns", description = "gui.spawn-item.spawn-id")
     private String spawnId;
-    @Serializable(headTexture = ITEM_HEAD, description = "gui.spawn-item.item")
+    @Serializable(displayItem = "getFlatItem", description = "gui.spawn-item.item")
     private ItemStackWrapper displayItem;
 
     public SpawnItem() {
@@ -60,8 +61,12 @@ public class SpawnItem implements Model {
         };
     }
 
+    public ItemStack getFlatItem() {
+        return displayItem.getWrapped().clone();
+    }
+
     @Override
     public ItemStack getGUIItem() {
-        return ItemUtils.getNamedItem(displayItem.getWrapped(), "&6" + spawnId, Lists.newArrayList());
+        return ItemUtils.getNamedItem(getFlatItem(), "&6" + spawnId, Lists.newArrayList());
     }
 }

@@ -11,11 +11,11 @@ import lombok.Getter;
 @Getter
 public class SpawnMenuManager extends ModelManager<SpawnMenu> {
 
-	private SpawnMenu menu;
+    private SpawnMenu menu;
 
-	public SpawnMenuManager(Class<SpawnMenu> classObject, String databaseType, JavaPlugin plugin) {
-		super(classObject, databaseType, plugin);
-		this.menu = database.loadObjects().stream().findAny().orElse(new SpawnMenu("Spawns", Lists.newArrayList()));
-	}
+    public SpawnMenuManager(Class<SpawnMenu> classObject, String databaseType, JavaPlugin plugin) {
+        super(classObject, databaseType, plugin);
+        this.menu = database.loadObjects().stream().findAny().orElse(new SpawnMenu("Spawns", Lists.newArrayList()));
+    }
 
 }

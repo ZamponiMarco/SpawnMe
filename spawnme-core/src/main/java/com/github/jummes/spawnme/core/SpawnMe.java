@@ -27,50 +27,50 @@ import lombok.Getter;
 @Getter
 public class SpawnMe extends JavaPlugin {
 
-	@Getter
-	private static SpawnMe instance;
+    @Getter
+    private static SpawnMe instance;
 
-	private SpawnManager spawnManager;
-	private SpawnMenuManager spawnMenuManager;
+    private SpawnManager spawnManager;
+    private SpawnMenuManager spawnMenuManager;
 
-	static {
-		Libs.registerSerializables();
-		ConfigurationSerialization.registerClass(Spawn.class);
-		ConfigurationSerialization.registerClass(SpawnMenu.class);
-		ConfigurationSerialization.registerClass(SpawnItem.class);
-	}
+    static {
+        Libs.registerSerializables();
+        ConfigurationSerialization.registerClass(Spawn.class);
+        ConfigurationSerialization.registerClass(SpawnMenu.class);
+        ConfigurationSerialization.registerClass(SpawnItem.class);
+    }
 
-	public void onEnable() {
-		instance = this;
+    public void onEnable() {
+        instance = this;
 
-		PluginLocale locale = new PluginLocale(this, Lists.newArrayList("en-US"), "en-US");
+        PluginLocale locale = new PluginLocale(this, Lists.newArrayList("en-US"), "en-US");
 
-		Libs.initializeLibrary(this, locale);
+        Libs.initializeLibrary(this, locale);
 
-		spawnManager = new SpawnManager(Spawn.class, "yaml", this);
-		spawnMenuManager = new SpawnMenuManager(SpawnMenu.class, "yaml", this);
+        spawnManager = new SpawnManager(Spawn.class, "yaml", this);
+        spawnMenuManager = new SpawnMenuManager(SpawnMenu.class, "yaml", this);
 
-		registerListeners();
-		setUpExecutors();
-	}
+        registerListeners();
+        setUpExecutors();
+    }
 
-	private void registerListeners() {
-		getServer().getPluginManager().registerEvents(new PlayerRespawnListener(), this);
-		getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
-	}
+    private void registerListeners() {
+        getServer().getPluginManager().registerEvents(new PlayerRespawnListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
+    }
 
-	private void setUpExecutors() {
-		PluginCommandExecutor spawnMeExecutor = new PluginCommandExecutor(SpawnMeHelpCommand.class, "help");
-		spawnMeExecutor.registerCommand("spawns", SpawnMeSpawnsCommand.class);
-		spawnMeExecutor.registerCommand("reload", SpawnMeReloadCommand.class);
-		spawnMeExecutor.registerCommand("menu", SpawnMeSpawnMenuCommand.class);
-		PluginCommandExecutor spawnExecutor = new PluginCommandExecutor(SpawnCommand.class, "");
-		PluginCommandExecutor spawnsExecutor = new PluginCommandExecutor(SpawnsCommand.class, "");
-		PluginCommandExecutor setSpawnExecutor = new PluginCommandExecutor(SetSpawnCommand.class, "");
-		getCommand("spawnme").setExecutor(spawnMeExecutor);
-		getCommand("spawn").setExecutor(spawnExecutor);
-		getCommand("spawns").setExecutor(spawnsExecutor);
-		getCommand("setspawn").setExecutor(setSpawnExecutor);
-	}
+    private void setUpExecutors() {
+        PluginCommandExecutor spawnMeExecutor = new PluginCommandExecutor(SpawnMeHelpCommand.class, "help");
+        spawnMeExecutor.registerCommand("spawns", SpawnMeSpawnsCommand.class);
+        spawnMeExecutor.registerCommand("reload", SpawnMeReloadCommand.class);
+        spawnMeExecutor.registerCommand("menu", SpawnMeSpawnMenuCommand.class);
+        PluginCommandExecutor spawnExecutor = new PluginCommandExecutor(SpawnCommand.class, "");
+        PluginCommandExecutor spawnsExecutor = new PluginCommandExecutor(SpawnsCommand.class, "");
+        PluginCommandExecutor setSpawnExecutor = new PluginCommandExecutor(SetSpawnCommand.class, "");
+        getCommand("spawnme").setExecutor(spawnMeExecutor);
+        getCommand("spawn").setExecutor(spawnExecutor);
+        getCommand("spawns").setExecutor(spawnsExecutor);
+        getCommand("setspawn").setExecutor(setSpawnExecutor);
+    }
 
 }

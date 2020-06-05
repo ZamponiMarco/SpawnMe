@@ -12,22 +12,22 @@ import com.github.jummes.spawnme.spawn.Spawn;
 
 public class PlayerJoinListener implements Listener {
 
-	@EventHandler
-	public void onPlayerJoin(PlayerSpawnLocationEvent e) {
-		OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(e.getPlayer().getUniqueId());
-		SpawnManager spawnManager = SpawnMe.getInstance().getSpawnManager();
+    @EventHandler
+    public void onPlayerJoin(PlayerSpawnLocationEvent e) {
+        OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(e.getPlayer().getUniqueId());
+        SpawnManager spawnManager = SpawnMe.getInstance().getSpawnManager();
 
-		String spawnId;
-		if (!offlinePlayer.hasPlayedBefore()) {
-			spawnId = SpawnMe.getInstance().getConfig().getString("firstJoinSpawn");
-		} else {
-			spawnId = SpawnMe.getInstance().getConfig().getString("joinSpawn");
-		}
+        String spawnId;
+        if (!offlinePlayer.hasPlayedBefore()) {
+            spawnId = SpawnMe.getInstance().getConfig().getString("firstJoinSpawn");
+        } else {
+            spawnId = SpawnMe.getInstance().getConfig().getString("joinSpawn");
+        }
 
-		Spawn spawn = spawnId == "none" ? null : spawnManager.getSpawn(spawnId);
-		if (spawn != null) {
-			e.setSpawnLocation(spawn.getLocation().getWrapped());
-		}
-	}
+        Spawn spawn = spawnId == "none" ? null : spawnManager.getSpawn(spawnId);
+        if (spawn != null) {
+            e.setSpawnLocation(spawn.getLocation().getWrapped());
+        }
+    }
 
 }

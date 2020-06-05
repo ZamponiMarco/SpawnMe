@@ -8,24 +8,24 @@ import com.github.jummes.spawnme.core.SpawnMe;
 
 public class SpawnMeReloadCommand extends AbstractCommand {
 
-	public SpawnMeReloadCommand(CommandSender sender, String subCommand, String[] arguments, boolean isSenderPlayer) {
-		super(sender, subCommand, arguments, isSenderPlayer);
-	}
+    public SpawnMeReloadCommand(CommandSender sender, String subCommand, String[] arguments, boolean isSenderPlayer) {
+        super(sender, subCommand, arguments, isSenderPlayer);
+    }
 
-	@Override
-	protected void execute() {
-		SpawnMe.getInstance().saveConfig();
-		SpawnMe.getInstance().reloadConfig();
-	}
+    @Override
+    protected void execute() {
+        SpawnMe.getInstance().saveConfig();
+        SpawnMe.getInstance().reloadConfig();
+    }
 
-	@Override
-	protected boolean isOnlyPlayer() {
-		return false;
-	}
+    @Override
+    protected boolean isOnlyPlayer() {
+        return false;
+    }
 
-	@Override
-	protected Permission getPermission() {
-		return new Permission("spawnme.admin.reload");
-	}
+    @Override
+    protected Permission getPermission() {
+        return new Permission("spawnme.admin.reload");
+    }
 
 }

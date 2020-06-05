@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<project name="maven-antrun-" default="main"  >
-<target name="main">
-  <copy file="../target/spawnme-1.0.2.jar" tofile="C:\Users\Marco\Desktop\test\plugins\spawnme-1.0.2.jar"/>
-</target>
+<project name="maven-antrun-" default="main">
+    <target name="main">
+        <copy file="../target/spawnme-1.0.3.jar" tofile="C:\Users\Marco\Desktop\test\plugins\spawnme-1.0.3.jar"/>
+    </target>
 </project>

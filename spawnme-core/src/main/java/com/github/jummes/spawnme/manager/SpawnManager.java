@@ -12,24 +12,24 @@ import com.github.jummes.spawnme.spawn.Spawn;
 import lombok.Getter;
 
 public class SpawnManager extends ModelManager<Spawn> {
-	
-	@Getter
-	private Set<Spawn> spawns;
 
-	public SpawnManager(Class<Spawn> classObject, String databaseType, JavaPlugin plugin) {
-		super(classObject, databaseType, plugin);
-		this.spawns = new HashSet<Spawn>(database.loadObjects());
-	}
+    @Getter
+    private Set<Spawn> spawns;
 
-	public void addSpawn(String id, LocationWrapper location) {
-		Spawn spawn = new Spawn(id, location);
-		spawns.remove(spawn);
-		spawns.add(spawn);
-		database.saveObject(spawn);
-	}
+    public SpawnManager(Class<Spawn> classObject, String databaseType, JavaPlugin plugin) {
+        super(classObject, databaseType, plugin);
+        this.spawns = new HashSet<Spawn>(database.loadObjects());
+    }
 
-	public Spawn getSpawn(String id) {
-		return spawns.stream().filter(spawn -> id.equals(spawn.getId())).findFirst().orElse(null);
-	}
+    public void addSpawn(String id, LocationWrapper location) {
+        Spawn spawn = new Spawn(id, location);
+        spawns.remove(spawn);
+        spawns.add(spawn);
+        database.saveObject(spawn);
+    }
+
+    public Spawn getSpawn(String id) {
+        return spawns.stream().filter(spawn -> id.equals(spawn.getId())).findFirst().orElse(null);
+    }
 
 }

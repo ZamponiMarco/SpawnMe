@@ -10,15 +10,15 @@ import com.github.jummes.spawnme.spawn.Spawn;
 
 public class PlayerRespawnListener implements Listener {
 
-	@EventHandler
-	public void onPlayerRespawn(PlayerRespawnEvent e) {
-		SpawnManager spawnManager = SpawnMe.getInstance().getSpawnManager();
+    @EventHandler
+    public void onPlayerRespawn(PlayerRespawnEvent e) {
+        SpawnManager spawnManager = SpawnMe.getInstance().getSpawnManager();
 
-		String spawnId = SpawnMe.getInstance().getConfig().getString("deathSpawn");
-		Spawn toSpawn = spawnId == "none" ? null : spawnManager.getSpawn(spawnId);
-		if (toSpawn != null) {
-			e.setRespawnLocation(toSpawn.getLocation().getWrapped());
-		}
-	}
+        String spawnId = SpawnMe.getInstance().getConfig().getString("deathSpawn");
+        Spawn toSpawn = spawnId == "none" ? null : spawnManager.getSpawn(spawnId);
+        if (toSpawn != null) {
+            e.setRespawnLocation(toSpawn.getLocation().getWrapped());
+        }
+    }
 
 }

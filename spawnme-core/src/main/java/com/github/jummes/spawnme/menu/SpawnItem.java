@@ -24,44 +24,44 @@ import lombok.Getter;
 @Getter
 public class SpawnItem implements Model {
 
-	private static final String ITEM_HEAD = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWZlOGU3ZjJkYjhlYWE4OGEwNDFjODlkNGMzNTNkMDY2Y2M0ZWRlZjc3ZWRjZjVlMDhiYjVkM2JhYWQifX19=";
-	private static final String TARGET_HEAD = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzc4N2I3YWZiNWE1OTk1Mzk3NWJiYTI0NzM3NDliNjAxZDU0ZDZmOTNjZWFjN2EwMmFjNjlhYWU3ZjliOCJ9fX0==";
+    private static final String ITEM_HEAD = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWZlOGU3ZjJkYjhlYWE4OGEwNDFjODlkNGMzNTNkMDY2Y2M0ZWRlZjc3ZWRjZjVlMDhiYjVkM2JhYWQifX19=";
+    private static final String TARGET_HEAD = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzc4N2I3YWZiNWE1OTk1Mzk3NWJiYTI0NzM3NDliNjAxZDU0ZDZmOTNjZWFjN2EwMmFjNjlhYWU3ZjliOCJ9fX0==";
 
-	@Serializable(headTexture = TARGET_HEAD, fromList = "getSpawns", fromListMapper = "mapSpawns", description = "gui.spawn-item.spawn-id")
-	private String spawnId;
-	@Serializable(headTexture = ITEM_HEAD, description = "gui.spawn-item.item")
-	private ItemStackWrapper displayItem;
+    @Serializable(headTexture = TARGET_HEAD, fromList = "getSpawns", fromListMapper = "mapSpawns", description = "gui.spawn-item.spawn-id")
+    private String spawnId;
+    @Serializable(headTexture = ITEM_HEAD, description = "gui.spawn-item.item")
+    private ItemStackWrapper displayItem;
 
-	public SpawnItem() {
-		this("", new ItemStackWrapper(new ItemStack(Material.STONE)));
-	}
+    public SpawnItem() {
+        this("", new ItemStackWrapper(new ItemStack(Material.STONE)));
+    }
 
-	public Spawn getSpawn() {
-		return SpawnMe.getInstance().getSpawnManager().getSpawn(spawnId);
-	}
+    public Spawn getSpawn() {
+        return SpawnMe.getInstance().getSpawnManager().getSpawn(spawnId);
+    }
 
-	// ---
+    // ---
 
-	public static SpawnItem deserialize(Map<String, Object> map) {
-		String spawnId = (String) map.get("spawnId");
-		ItemStackWrapper displayItem = (ItemStackWrapper) map.get("displayItem");
-		return new SpawnItem(spawnId, displayItem);
-	}
+    public static SpawnItem deserialize(Map<String, Object> map) {
+        String spawnId = (String) map.get("spawnId");
+        ItemStackWrapper displayItem = (ItemStackWrapper) map.get("displayItem");
+        return new SpawnItem(spawnId, displayItem);
+    }
 
-	@SuppressWarnings("unused")
-	public static List<Object> getSpawns(ModelPath<?> path) {
-		return SpawnMe.getInstance().getSpawnManager().getSpawns().stream().map(spawn -> spawn.getId())
-				.collect(Collectors.toList());
-	}
+    @SuppressWarnings("unused")
+    public static List<Object> getSpawns(ModelPath<?> path) {
+        return SpawnMe.getInstance().getSpawnManager().getSpawns().stream().map(spawn -> spawn.getId())
+                .collect(Collectors.toList());
+    }
 
-	public static Function<Object, ItemStack> mapSpawns() {
-		return obj -> {
-			return SpawnMe.getInstance().getSpawnManager().getSpawn((String) obj).getGUIItem();
-		};
-	}
+    public static Function<Object, ItemStack> mapSpawns() {
+        return obj -> {
+            return SpawnMe.getInstance().getSpawnManager().getSpawn((String) obj).getGUIItem();
+        };
+    }
 
-	@Override
-	public ItemStack getGUIItem() {
-		return ItemUtils.getNamedItem(displayItem.getWrapped(), "&6" + spawnId, Lists.newArrayList());
-	}
+    @Override
+    public ItemStack getGUIItem() {
+        return ItemUtils.getNamedItem(displayItem.getWrapped(), "&6" + spawnId, Lists.newArrayList());
+    }
 }

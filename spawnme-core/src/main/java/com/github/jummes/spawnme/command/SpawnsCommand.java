@@ -11,28 +11,28 @@ import com.github.jummes.spawnme.gui.SpawnsViewInventoryHolder;
 
 public class SpawnsCommand extends AbstractCommand {
 
-	public SpawnsCommand(CommandSender sender, String subCommand, String[] arguments, boolean isSenderPlayer) {
-		super(sender, subCommand, arguments, isSenderPlayer);
-	}
+    public SpawnsCommand(CommandSender sender, String subCommand, String[] arguments, boolean isSenderPlayer) {
+        super(sender, subCommand, arguments, isSenderPlayer);
+    }
 
-	@Override
-	protected void execute() {
-		Player p = (Player) sender;
-		if (!SpawnMe.getInstance().getSpawnMenuManager().getMenu().getSpawns().isEmpty()) {
-			p.openInventory(new SpawnsViewInventoryHolder(SpawnMe.getInstance(), null, p, 1).getInventory());
-		} else {
-			p.sendMessage(Libs.getLocale().get("messages.command.menu-not-implemented"));
-		}
-	}
+    @Override
+    protected void execute() {
+        Player p = (Player) sender;
+        if (!SpawnMe.getInstance().getSpawnMenuManager().getMenu().getSpawns().isEmpty()) {
+            p.openInventory(new SpawnsViewInventoryHolder(SpawnMe.getInstance(), null, p, 1).getInventory());
+        } else {
+            p.sendMessage(Libs.getLocale().get("messages.command.menu-not-implemented"));
+        }
+    }
 
-	@Override
-	protected boolean isOnlyPlayer() {
-		return true;
-	}
+    @Override
+    protected boolean isOnlyPlayer() {
+        return true;
+    }
 
-	@Override
-	protected Permission getPermission() {
-		return new Permission("spawnme.spawn.spawns");
-	}
+    @Override
+    protected Permission getPermission() {
+        return new Permission("spawnme.spawn.spawns");
+    }
 
 }

@@ -27,33 +27,33 @@ import lombok.Setter;
 @SerializableAs("Spawn")
 public class Spawn implements Model {
 
-	private static final String ID_HEAD = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDU4NGNmN2Q3OWYxYWViMjU1NGMxYmZkNDZlNmI3OGNhNmFlM2FhMmEyMTMyMzQ2YTQxMGYxNWU0MjZmMzEifX19=";
-	private static final String TARGET_HEAD = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzc4N2I3YWZiNWE1OTk1Mzk3NWJiYTI0NzM3NDliNjAxZDU0ZDZmOTNjZWFjN2EwMmFjNjlhYWU3ZjliOCJ9fX0==";
+    private static final String ID_HEAD = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDU4NGNmN2Q3OWYxYWViMjU1NGMxYmZkNDZlNmI3OGNhNmFlM2FhMmEyMTMyMzQ2YTQxMGYxNWU0MjZmMzEifX19=";
+    private static final String TARGET_HEAD = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzc4N2I3YWZiNWE1OTk1Mzk3NWJiYTI0NzM3NDliNjAxZDU0ZDZmOTNjZWFjN2EwMmFjNjlhYWU3ZjliOCJ9fX0==";
 
-	@EqualsAndHashCode.Include
-	@Serializable(headTexture = ID_HEAD, description = "gui.spawn.id")
-	private final String id;
-	@Serializable(headTexture = TARGET_HEAD, description = "gui.spawn.location")
-	private LocationWrapper location;
+    @EqualsAndHashCode.Include
+    @Serializable(headTexture = ID_HEAD, description = "gui.spawn.id")
+    private final String id;
+    @Serializable(headTexture = TARGET_HEAD, description = "gui.spawn.location")
+    private LocationWrapper location;
 
-	public Spawn(Player p) {
-		this(RandomStringUtils.randomAlphabetic(6), new LocationWrapper(p.getLocation().getBlock().getLocation()));
-	}
+    public Spawn(Player p) {
+        this(RandomStringUtils.randomAlphabetic(6), new LocationWrapper(p.getLocation().getBlock().getLocation()));
+    }
 
-	// ---
+    // ---
 
-	public static Spawn deserialize(Map<String, Object> map) {
-		return new Spawn((String) map.get("id"), (LocationWrapper) map.get("location"));
-	}
+    public static Spawn deserialize(Map<String, Object> map) {
+        return new Spawn((String) map.get("id"), (LocationWrapper) map.get("location"));
+    }
 
-	@Override
-	public ItemStack getGUIItem() {
-		return ItemUtils.getNamedItem(Libs.getWrapper().skullFromValue(TARGET_HEAD), id, new ArrayList<String>());
-	}
+    @Override
+    public ItemStack getGUIItem() {
+        return ItemUtils.getNamedItem(Libs.getWrapper().skullFromValue(TARGET_HEAD), id, new ArrayList<String>());
+    }
 
-	@Override
-	public void onRemoval() {
-		SpawnMe.getInstance().getSpawnMenuManager().getMenu().getSpawns()
-				.removeIf(spawn -> spawn.getSpawnId().equals(id));
-	}
+    @Override
+    public void onRemoval() {
+        SpawnMe.getInstance().getSpawnMenuManager().getMenu().getSpawns()
+                .removeIf(spawn -> spawn.getSpawnId().equals(id));
+    }
 }

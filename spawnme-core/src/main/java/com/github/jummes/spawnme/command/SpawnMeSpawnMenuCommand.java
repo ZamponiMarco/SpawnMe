@@ -12,27 +12,27 @@ import com.github.jummes.spawnme.menu.SpawnMenu;
 
 public class SpawnMeSpawnMenuCommand extends AbstractCommand {
 
-	public SpawnMeSpawnMenuCommand(CommandSender sender, String subCommand, String[] arguments,
-			boolean isSenderPlayer) {
-		super(sender, subCommand, arguments, isSenderPlayer);
-	}
+    public SpawnMeSpawnMenuCommand(CommandSender sender, String subCommand, String[] arguments,
+                                   boolean isSenderPlayer) {
+        super(sender, subCommand, arguments, isSenderPlayer);
+    }
 
-	@Override
-	protected void execute() {
-		Player p = (Player) sender;
-		p.openInventory(new ModelObjectInventoryHolder(SpawnMe.getInstance(), null, new ModelPath<SpawnMenu>(
-				SpawnMe.getInstance().getSpawnMenuManager(), SpawnMe.getInstance().getSpawnMenuManager().getMenu()))
-						.getInventory());
-	}
+    @Override
+    protected void execute() {
+        Player p = (Player) sender;
+        p.openInventory(new ModelObjectInventoryHolder(SpawnMe.getInstance(), null, new ModelPath<SpawnMenu>(
+                SpawnMe.getInstance().getSpawnMenuManager(), SpawnMe.getInstance().getSpawnMenuManager().getMenu()))
+                .getInventory());
+    }
 
-	@Override
-	protected boolean isOnlyPlayer() {
-		return true;
-	}
+    @Override
+    protected boolean isOnlyPlayer() {
+        return true;
+    }
 
-	@Override
-	protected Permission getPermission() {
-		return new Permission("spawnme.admin.menu");
-	}
+    @Override
+    protected Permission getPermission() {
+        return new Permission("spawnme.admin.menu");
+    }
 
 }

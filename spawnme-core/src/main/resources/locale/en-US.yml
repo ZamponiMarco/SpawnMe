@@ -2,6 +2,7 @@ messages:
   command:
     menu-not-implemented: "&cThe spawn menu is not implemented"
     spawn-set: "&aThe spawn has been set"
+    reload: "&6&lSpawnMe &ahas been correctly reloaded."
   spawn:
     success: "&aYou have been brought to the spawn"
     unknown-spawn: "&cThe selected spawn doesn't exist"

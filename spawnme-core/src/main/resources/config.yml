@@ -10,7 +10,8 @@ firstJoinSpawn: none
 
 # This field specifies which spawn will be used (if configured)
 # when a player respawns after death, if set to 'none' the
-# default world spawn will be used
+# default world spawn will be used, if set to 'closest' the
+# closest spawn to the player's death location will be used.
 deathSpawn: none
 
 # Whether the update checker is active or not
@@ -18,4 +19,4 @@ updateChecker: true
 
 # CONFIG.YML VERSION
 # DO NOT TOUCH
-version: 1.0.4
+version: 1.0.5

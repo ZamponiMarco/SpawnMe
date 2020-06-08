@@ -1,5 +1,6 @@
 package com.github.jummes.spawnme.command;
 
+import com.github.jummes.libs.core.Libs;
 import org.bukkit.command.CommandSender;
 import org.bukkit.permissions.Permission;
 
@@ -14,8 +15,9 @@ public class SpawnMeReloadCommand extends AbstractCommand {
 
     @Override
     protected void execute() {
-        SpawnMe.getInstance().saveConfig();
+        Libs.getLocale().reloadData();
         SpawnMe.getInstance().reloadConfig();
+        sender.sendMessage(SpawnMe.getInstance().getLocale().get("messages.command.reload"));
     }
 
     @Override

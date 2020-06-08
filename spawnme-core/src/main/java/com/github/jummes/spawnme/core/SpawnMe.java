@@ -30,13 +30,14 @@ import java.io.File;
 @Getter
 public class SpawnMe extends JavaPlugin {
 
-    private static final String CONFIG_VERSION = "1.0.4";
+    private static final String CONFIG_VERSION = "1.0.5";
 
     @Getter
     private static SpawnMe instance;
 
     private SpawnManager spawnManager;
     private SpawnMenuManager spawnMenuManager;
+    PluginLocale locale;
 
     static {
         Libs.registerSerializables();
@@ -76,7 +77,7 @@ public class SpawnMe extends JavaPlugin {
     }
 
     private void setUpData(){
-        PluginLocale locale = new PluginLocale(this, Lists.newArrayList("en-US"), "en-US");
+        locale = new PluginLocale(this, Lists.newArrayList("en-US"), "en-US");
         Libs.initializeLibrary(this, locale);
         spawnManager = new SpawnManager(Spawn.class, "yaml", this);
         spawnMenuManager = new SpawnMenuManager(SpawnMenu.class, "yaml", this);

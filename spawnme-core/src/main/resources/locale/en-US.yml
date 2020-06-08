@@ -18,9 +18,10 @@ gui:
     location:
       - "&7&oThe location associated to this"
       - "&7&ospawn, where the player will be"
-      - "&7&oteleported. &6Right click &7&oto"
-      - "&7&oset the location to the one of"
-      - "&7&othe block pointed."
+      - "&7&oteleported."
+      - "&6&lLeft click &7&oto modify."
+      - "&6&lRight click &7&oto move to your location."
+      - "&6&lMiddle click &7&oto teleport to the location."
   spawn-menu:
     title:
       - "&7&oThe title of the menu."

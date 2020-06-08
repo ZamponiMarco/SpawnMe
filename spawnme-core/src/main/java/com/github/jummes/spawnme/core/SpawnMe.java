@@ -67,9 +67,9 @@ public class SpawnMe extends JavaPlugin {
         }
 
         if (!getConfig().getString("version").equals(CONFIG_VERSION)) {
-            getLogger().info("config.yml has changed. Old config is stored inside config-"
+            getLogger().info("config.yml has changed. Old config is stored inside old-config-"
                     + getConfig().getString("version") + ".yml");
-            File outputFile = new File(getDataFolder(), "config-" + getConfig().getString("version") + ".yml");
+            File outputFile = new File(getDataFolder(), "old-config-" + getConfig().getString("version") + ".yml");
             FileUtil.copy(configFile, outputFile);
             configFile.delete();
             saveDefaultConfig();

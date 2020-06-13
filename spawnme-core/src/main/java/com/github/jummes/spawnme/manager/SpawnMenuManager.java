@@ -18,4 +18,8 @@ public class SpawnMenuManager extends ModelManager<SpawnMenu> {
         this.menu = database.loadObjects().stream().findAny().orElse(new SpawnMenu("Spawns", Lists.newArrayList()));
     }
 
+    public void reloadData(){
+        this.menu = database.loadObjects().stream().findAny().orElse(new SpawnMenu("Spawns", Lists.newArrayList()));
+    }
+
 }

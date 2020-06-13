@@ -1,24 +1,23 @@
 package com.github.jummes.spawnme.spawn;
 
-import java.util.ArrayList;
-import java.util.Map;
-
-import org.apache.commons.lang.RandomStringUtils;
-import org.bukkit.configuration.serialization.SerializableAs;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-
 import com.github.jummes.libs.annotation.Serializable;
 import com.github.jummes.libs.core.Libs;
 import com.github.jummes.libs.model.Model;
 import com.github.jummes.libs.model.wrapper.LocationWrapper;
 import com.github.jummes.libs.util.ItemUtils;
+import com.github.jummes.libs.util.MessageUtils;
 import com.github.jummes.spawnme.core.SpawnMe;
-
+import com.google.common.collect.Lists;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang.RandomStringUtils;
+import org.bukkit.configuration.serialization.SerializableAs;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+
+import java.util.Map;
 
 @Getter
 @Setter
@@ -48,7 +47,8 @@ public class Spawn implements Model {
 
     @Override
     public ItemStack getGUIItem() {
-        return ItemUtils.getNamedItem(Libs.getWrapper().skullFromValue(TARGET_HEAD), id, new ArrayList<String>());
+        return ItemUtils.getNamedItem(Libs.getWrapper().skullFromValue(TARGET_HEAD), id, Lists.newArrayList(MessageUtils.color("&6&lLeft click &eto modify."),
+                MessageUtils.color("&6&lRight click &eto delete.")));
     }
 
     @Override

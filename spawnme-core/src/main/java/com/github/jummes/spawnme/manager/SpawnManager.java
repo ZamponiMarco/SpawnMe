@@ -18,7 +18,7 @@ public class SpawnManager extends ModelManager<Spawn> {
 
     public SpawnManager(Class<Spawn> classObject, String databaseType, JavaPlugin plugin) {
         super(classObject, databaseType, plugin);
-        this.spawns = new HashSet<Spawn>(database.loadObjects());
+        this.spawns = new HashSet<>(database.loadObjects());
     }
 
     public void addSpawn(String id, LocationWrapper location) {
@@ -32,4 +32,7 @@ public class SpawnManager extends ModelManager<Spawn> {
         return spawns.stream().filter(spawn -> id.equals(spawn.getId())).findFirst().orElse(null);
     }
 
+    public void reloadData() {
+        this.spawns = new HashSet<>(database.loadObjects());
+    }
 }

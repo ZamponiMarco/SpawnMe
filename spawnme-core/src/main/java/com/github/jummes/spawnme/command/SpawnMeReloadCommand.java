@@ -15,8 +15,10 @@ public class SpawnMeReloadCommand extends AbstractCommand {
 
     @Override
     protected void execute() {
-        Libs.getLocale().reloadData();
         SpawnMe.getInstance().reloadConfig();
+        Libs.getLocale().reloadData(SpawnMe.getInstance().getConfig().getString("locale"));
+        SpawnMe.getInstance().getSpawnManager().reloadData();
+        SpawnMe.getInstance().getSpawnMenuManager().reloadData();
         sender.sendMessage(SpawnMe.getInstance().getLocale().get("messages.command.reload"));
     }
 

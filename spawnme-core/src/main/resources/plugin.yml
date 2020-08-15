@@ -2,7 +2,7 @@ name: SpawnMe
 author: jummes
 main: com.github.jummes.spawnme.core.SpawnMe
 version: ${version}
-softdepend: [Multiverse-Core, MultiWorld]
+softdepend: [Multiverse-Core, MultiWorld, EssentialsSpawn]
 api-version: 1.13
 commands:
   setspawn:
@@ -25,6 +25,9 @@ permissions:
   spawnme.admin.spawns:
     description: /spawnme spawns command permission
     default: op
+  spawnme.admin.import:
+    description: /spawnme import command permission
+    default: op
   spawnme.admin.*:
     description: wildcard admin permission
     default: op
@@ -34,6 +37,7 @@ permissions:
       spawnme.admin.reload: true
       spawnme.admin.menu: true
       spawnme.admin.spawns: true
+      spawnme.admin.import: true
   spawnme.spawn.spawns:
     description: /spawns command permission
     default: true

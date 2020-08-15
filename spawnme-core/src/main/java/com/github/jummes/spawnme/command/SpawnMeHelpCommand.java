@@ -10,12 +10,14 @@ public class SpawnMeHelpCommand extends AbstractCommand {
 
     private final static String HELP_MSG = MessageUtils.header("SpawnMe Help")
             + MessageUtils.color(
-            "&2/spawnme help &7Print the help message.\n" + "&2/spawnme reload &7Reload configuration files.\n"
+            "&2/spawnme help &7Print the help message.\n"
+                    + "&2/spawnme reload &7Reload configuration files.\n"
                     + "&2/spawnme menu &7Open the menu configuration GUI\n"
                     + "&2/spawnme spawns &7Open the spawn configuration GUI.\n"
+                    + "&2/spawnme import &7Import your spawns from EssentialsSpawn plugin"
                     + "&2/spawn [id] &7Teleport to the spawn [id], if no [id] is provided 'default' is used as id.\n"
-                    + "&2/setspawn [id] &7Set the spawn [id] to the player location, if no [id] is provided 'default' is used as id.\n" +
-                    "&2/spawns &7Open the spawns menu.\n")
+                    + "&2/setspawn [id] &7Set the spawn [id] to the player location, if no [id] is provided 'default' is used as id.\n"
+                    + "&2/spawns &7Open the spawns menu.\n")
             + MessageUtils.delimiter("SpawnMe Help");
 
     public SpawnMeHelpCommand(CommandSender sender, String subCommand, String[] arguments, boolean isSenderPlayer) {
